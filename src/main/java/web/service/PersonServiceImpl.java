@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Service
-
+@Transactional
 public class PersonServiceImpl implements PersonService {
     private final PersonDAO personDAO;
 
@@ -18,31 +18,26 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Person> index() {
         return personDAO.index();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Person show(int id) {
         return personDAO.show(id);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public void save(Person person) {
         personDAO.save(person);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public void update(int id, @Valid Person updatedPerson) {
         personDAO.update(id, updatedPerson);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public void delete(int id) {
         personDAO.delete(id);
     }

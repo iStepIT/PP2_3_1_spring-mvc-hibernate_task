@@ -9,8 +9,14 @@ import java.util.List;
 
 @Repository
 public class PersonDaoImpl implements PersonDAO {
-    @PersistenceContext
+
     private EntityManager entityManager;
+
+    @PersistenceContext
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Override
     public List<Person> index() {
         return entityManager.createQuery("SELECT u FROM Person u", Person.class).getResultList();
