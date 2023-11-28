@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Service
-@Transactional
+
 public class PersonServiceImpl implements PersonService {
     private final PersonDAO personDAO;
 
