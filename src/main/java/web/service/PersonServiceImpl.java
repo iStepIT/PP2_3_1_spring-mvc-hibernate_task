@@ -5,11 +5,10 @@ import web.model.Person;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Service
-@Transactional
+
 public class PersonServiceImpl implements PersonService {
     private final PersonDAO personDAO;
 
@@ -27,16 +26,18 @@ public class PersonServiceImpl implements PersonService {
         return personDAO.show(id);
     }
 
+    @Transactional
     @Override
     public void save(Person person) {
         personDAO.save(person);
     }
 
+    @Transactional
     @Override
-    public void update(int id, @Valid Person updatedPerson) {
+    public void update(int id, Person updatedPerson) {
         personDAO.update(id, updatedPerson);
     }
-
+    @Transactional
     @Override
     public void delete(int id) {
         personDAO.delete(id);

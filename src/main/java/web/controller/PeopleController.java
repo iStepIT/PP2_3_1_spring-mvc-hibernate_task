@@ -14,11 +14,9 @@ import javax.validation.Valid;
 public class PeopleController {
     private final PersonService personService;
 
-
     public PeopleController(PersonService personService) {
         this.personService = personService;
     }
-
     @GetMapping("/")
     public String index(Model model) {
 
