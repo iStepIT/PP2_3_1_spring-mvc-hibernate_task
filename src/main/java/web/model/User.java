@@ -1,22 +1,23 @@
 package web.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "person")
-public class Person {
+@Table(name = "users")
+public class User {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty (message = "Имя не может быть пустым")
-    @Size (min = 2, max =30, message = "Имя должно быть от 2 до 30 символов")
+    @NotEmpty(message = "Имя не может быть пустым")
+    @Size(min = 2, max =30, message = "Имя должно быть от 2 до 30 символов")
     @Column(name = "name")
     private String name;
 
@@ -30,8 +31,8 @@ public class Person {
     @Column(name = "email")
     private String email;
 
-    public Person() {}
-    public Person( String name, String lastName, String email) {
+    public User() {}
+    public User( String name, String lastName, String email) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -72,7 +73,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -84,8 +85,8 @@ public class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return id == person.id && Objects.equals(name, person.name) && Objects.equals(lastName, person.lastName) && Objects.equals(email, person.email);
+        User user = (User) o;
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email);
     }
 
     @Override

@@ -2,17 +2,19 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Show</title>
+  <title>Данные пользователя</title>
 </head>
 <body>
-<p th:text="${person.getName() + ', ' + person.getLastName()}">VALUE</p>
-<p th:text="${'Email: ' + person.getEmail()}">VALUE</p>
-<p th:text="${person.getId()}">VALUE</p>
+<p th:text="${'Пользователь: ' + users.name + ', ' + users.lastName}">VALUE</p>
+<p th:text="${'Email: ' + users.email}">VALUE</p>
 
-<a th:href="@{/edit(id=${person.getId()})}">Edit</a>
+<p th:text="${'Индефикатор: ' + users.id}">VALUE</p>
 
-<form th:method="DELETE" th:action="@{/{id}(id=${person.getId()})}">
-  <input type="submit" value="Удалить пользователя"/>
+<a th:href="@{/edit(id=${users.id})}">Редактировать пользователя</a>
+
+<form method="GET" action="/delete">
+  <input type="hidden" name="id" th:value="${users.id}">
+  <button type="submit">Удалить пользователя</button>
 </form>
 </body>
 </html>

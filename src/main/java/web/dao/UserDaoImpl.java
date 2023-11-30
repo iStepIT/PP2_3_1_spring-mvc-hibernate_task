@@ -1,6 +1,6 @@
 package web.dao;
 
-import web.model.Person;
+import web.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class PersonDaoImpl implements PersonDAO {
+public class UserDaoImpl implements UserDAO {
 
     private EntityManager entityManager;
 
@@ -18,28 +18,31 @@ public class PersonDaoImpl implements PersonDAO {
     }
 
     @Override
-    public List<Person> index() {
-        return entityManager.createQuery("SELECT u FROM Person u", Person.class)
+    public List<User> index() {
+        return entityManager.createQuery("FROM User", User.class)
                 .getResultList();
     }
 
     @Override
-    public Person show(int id) {
-        return entityManager.find(Person.class, id);
+    public User show(int id) {
+        return entityManager.find(User.class, id);
     }
 
     @Override
-    public void save(Person person) {
-        entityManager.persist(person);
+    public void save(User user) {
+        entityManager.persist(user);
+        entityManager.flush();
     }
 
     @Override
-    public void update(int id, Person updatePerson) {
-        entityManager.merge(updatePerson);
+    public void update(int id, User user) {
+        entityManager.merge(user);
+        entityManager.flush();
     }
 
     @Override
     public void delete(int id) {
         entityManager.remove(show(id));
+        entityManager.flush();
     }
 }
